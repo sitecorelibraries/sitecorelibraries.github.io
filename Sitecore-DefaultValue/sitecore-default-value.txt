@@ -1,0 +1,68 @@
+Item										Default Value
+$dataFolder									/data
+$mediaFolder								/upload
+$tempFolder									/tempFolder
+Link Database								core
+Task Database								core
+ID Database									master
+CleanupAgent								04:00:00		format-		[days.]hh:mm:ss
+CleanupHistory								04:00:00
+CleanupEventQueue							04:00:00
+CleanupPublishQueue							04:00:00
+source database								master
+target database								web
+Publish mode								incremental
+AutomaticLockOnSave							true
+AutomaticUnlockOnSaved						false
+AutomaticDataBind							false
+AverageItemSize								5000		bytes
+DefaultDataCacheSize						50MB
+DefaultClientDataCacheSize					25MB
+DefaultHtmlCacheSize						25MB
+DefaultItemPathsCacheSize					50MB
+DefaultPathCacheSize						500KB
+DisableCacheSizeLimits						false
+Caching.Enabled								true
+CheckSecurityOnLanguages					true
+ClientLanguage								en
+DefaultLanguage								en
+DebugBorderColor							red
+DefaultItem									/Home
+DefaultSQLTimeout							00:05:00
+DefaultSortOrderValue						100
+DisableBrowserCaching						true
+EnableEventQueues							true
+FastQueryDescendantsDisabled				false
+GridPageSize								15
+HealthMonitorInterval						00:10:00
+LicenseFile									$(dataFolder)/license.xml
+MaxTreeDepth								100
+MailServerPort								25
+MaxItemNameLength							100
+ImageTypes									|gif|jpg|png|
+ItemNotFoundUrl								/sitecore/service/notfound.aspx
+LayoutNotFoundUrl							/sitecore/service/nolayout.aspx
+LicenseFile									$(dataFolder)/license.xml
+LogFolder									$(dataFolder)/logs
+NoLicenseUrl								/sitecore/service/nolicense.aspx
+NoAccessUrl									/sitecore/service/noaccess.aspx
+PackagePath									$(dataFolder)/packages
+SerializationFolder							$(dataFolder)/serialization
+RecycleBinActive							true
+WebStylesheet								/default.css
+ItemNameValidation							^[\w\*\$][\w\s\-\$]*(\(\d{1,}\)){0,1}$
+EmailValidation								^[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$
+
+
+
+maxAge		Logs							30.00:00:00
+maxAge		viewstate						2.00:00:00
+maxAge		Dashboard reports				2.00:00:00
+maxAge		diagnostics						00:10:00
+maxAge		MediaCache						90.00:00:00
+replace		&amp;							-a-
+replace		?								-q-
+replace		/								-s-
+replace		*								-w-
+replace		.								-d-
+replace		:								-c-
