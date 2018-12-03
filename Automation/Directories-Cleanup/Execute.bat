@@ -1,0 +1,1 @@
+powershell.exe E:\learning\Automation\Directories-Cleanup\pwrshell.ps1 "E:\learning\Automation\Directories-Cleanup\FolderCleanupFile.txt"
