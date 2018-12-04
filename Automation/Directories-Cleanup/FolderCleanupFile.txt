@@ -1,1 +1,3 @@
-put the complete directory path
+D:\FolderLocation1
+D:\FolderLocation2
+D:\FolderLocation3
