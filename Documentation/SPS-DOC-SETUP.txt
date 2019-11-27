@@ -1,0 +1,77 @@
+Steps to Setup Sitecore Publishing  (SPS)
+
+	Create Fresh Sitecore instance (Let's say - scpoc) | Or continue with existing instance @(but with own risk)
+	Check Compatibility Table for SPS https://kb.sitecore.net/articles/545289
+	Download required version of SPS and SPS module
+	Unzip "Sitecore Publishing Service X.X.X rev.XXXXXX.zip" particular location and remember to give everyone access. (Let's say location c:\Publishingservice)
+	
+	Create new website 
+		open nternet Information Services (IIS) to setup the site.
+		sitename - publishingservice
+		location - c:\Publishingservice
+		hostname - publishingservice
+		
+	save
+	
+	Now goback to app pool and select publishingservice then click basic setting from right side
+	Set Value "No Managed Value" for ".NET CLR Version" from dropdown.
+	
+	Open command prompt as Admin right
+		>cd c:/Publishingservice
+		Remember : Replace placodeholder values, and repeat for as many dbname (generally for web/core/master)
+		>.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring <dbname> "user id=<userid>;password=<password>;Data Source=<datasourcename>;Database=<dbname>;Integrated Security=False;MultipleActiveResultSets=True"
+		
+		
+		For Example: 
+		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring master "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_master;Integrated Security=False;MultipleActiveResultSets=True"
+		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring web "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_web;Integrated Security=False;MultipleActiveResultSets=True"
+		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring core "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_core;Integrated Security=False;MultipleActiveResultSets=True"
+		
+		Once done above, now run below commands
+		
+		>.\Sitecore.Framework.Publishing.Host.exe schema list
+		>.\Sitecore.Framework.Publishing.Host.exe schema upgrade --force
+		
+	goto sitecore running instnace's connectionstrings.config and append ;MultipleActiveResultSets=True; at line for core/web/master setting
+	save and close connectionstrings.config
+	Now goto path C:\Publishingservice\config\global and rename sc.connectionstrings.json with sc.connectionstrings.xml
+	Open sc.connectionstrings.xml and replace with below settings
+	
+		<Settings>
+			<Sitecore>
+				<Publishing>
+					<ConnectionStrings>
+					  <Master>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_master;Integrated Security=False;MultipleActiveResultSets=True;</Master>
+					  <Web>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_web;Integrated Security=False;MultipleActiveResultSets=True;</Web>
+					  <Core>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_core;Integrated Security=False;MultipleActiveResultSets=True;</Core>
+					</ConnectionStrings>
+			</Publishing>
+			</Sitecore>
+		</Settings>
+		
+	save and close sc.connectionstrings.xml
+	
+	Now check status for http://publishingservice/api/publishing/operations/status/ must return status as 0 [Instance Name : for publishing service which we created as new site in IIS]
+	
+	Now time to install sitecore publishing service module Steps - Login to Sitecore - install packages once done logout and login again
+	Create new config named as "z.publishingservice.config" under ~/App_config/Include append below settings
+		
+		<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+			<sitecore>
+				<settings>
+						<!-- Let's say <setting name="PublishingServiceUrlRoot">http://local.publishingservice/</setting> -->
+					<setting name="PublishingServiceUrlRoot">http://{your-publishing-service-site-url-here}/</setting>
+				</settings>
+			</sitecore>
+		</configuration>
+	
+	save and close.
+	
+	Now Goto Sitecore, Launchpad View
+		Will see publishing icon, click there
+		Just to check all works good - click on Publish all items from left top
+		Popup will open, now check for repair mode and then click on publish button.
+		Will see status as "The publish job has been moved to the queue succesfully."
+		And now from dashboard, can view all completed/Queued tasks history.
+		
+		
