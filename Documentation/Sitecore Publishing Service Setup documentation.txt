@@ -23,9 +23,9 @@ Steps to Setup Sitecore Publishing  (SPS)
 		
 		
 		For Example: 
-		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring master "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_master;Integrated Security=False;MultipleActiveResultSets=True"
-		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring web "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_web;Integrated Security=False;MultipleActiveResultSets=True"
-		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring core "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_core;Integrated Security=False;MultipleActiveResultSets=True"
+		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring master "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=master;Integrated Security=False;MultipleActiveResultSets=True"
+		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring web "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=web;Integrated Security=False;MultipleActiveResultSets=True"
+		.\Sitecore.Framework.Publishing.Host.exe configuration setconnectionstring core "user id=sa;password=test123;Data Source=pradeepsqlserver;Database=core;Integrated Security=False;MultipleActiveResultSets=True"
 		
 		Once done above, now run below commands
 		
@@ -41,9 +41,9 @@ Steps to Setup Sitecore Publishing  (SPS)
 			<Sitecore>
 				<Publishing>
 					<ConnectionStrings>
-					  <Master>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_master;Integrated Security=False;MultipleActiveResultSets=True;</Master>
-					  <Web>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_web;Integrated Security=False;MultipleActiveResultSets=True;</Web>
-					  <Core>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=Consolidation_core;Integrated Security=False;MultipleActiveResultSets=True;</Core>
+					  <Master>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=master;Integrated Security=False;MultipleActiveResultSets=True;</Master>
+					  <Web>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=web;Integrated Security=False;MultipleActiveResultSets=True;</Web>
+					  <Core>user id=sa;password=test123;Data Source=pradeepsqlserver;Database=core;Integrated Security=False;MultipleActiveResultSets=True;</Core>
 					</ConnectionStrings>
 			</Publishing>
 			</Sitecore>
