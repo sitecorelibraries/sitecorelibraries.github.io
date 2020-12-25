@@ -68,8 +68,8 @@ try {
  }
  Write-Host "Generating Traefik TLS certificates..." -ForegroundColor Green
  & $mkcert -install
- & $mkcert -cert-file $InstanceName.cm.localhost.crt -key-file $InstanceName.cm.localhost.key "$InstanceName.cm.localhost"
- & $mkcert -cert-file $InstanceName.id.localhost.crt -key-file $InstanceName.id.localhost.key "$InstanceName.id.localhost"
+ & $mkcert -cert-file cm.$InstanceName.localhost.crt -key-file cm.$InstanceName.localhost.key "cm.$($InstanceName).localhost"
+ & $mkcert -cert-file id.$InstanceName.localhost.crt -key-file id.$InstanceName.localhost.key "id.$($InstanceName).localhost"
 }
 catch {
  Write-Host "An error occurred while attempting to generate TLS certificates: $_" -ForegroundColor Red
@@ -78,6 +78,6 @@ finally {
  Pop-Location
 }
 Write-Host "Adding Windows hosts file entries..." -ForegroundColor Green
-Add-HostsEntry "$InstanceName.cm.localhost"
-Add-HostsEntry "$InstanceName.id.localhost"
+Add-HostsEntry "cm.$($InstanceName).localhost"
+Add-HostsEntry "id.$($InstanceName).localhost"
 Write-Host "Done!" -ForegroundColor Green
