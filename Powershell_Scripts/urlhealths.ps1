@@ -39,7 +39,7 @@ BEGIN
 PROCESS
 {
 	$results = @()
-	[string[]]$ItemList = Get-Content -Path 'D:\uat-urls.txt'
+	[string[]]$ItemList = Get-Content -Path 'D:\urls.txt'
 	foreach ($item in $ItemList)
 	{
 		$status = GetUrlStatus -Site $item
